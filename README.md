@@ -1,2 +1,2 @@
-# marginhu.github.io
-my web
+# todaygood.github.io
+my web repository
