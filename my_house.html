@@ -1,24 +1,89 @@
 
 
-<a href="http://j.map.baidu.com/be/Awx">世纪春城3期4栋1008室百度地图 </a>
+<a href="http://j.map.baidu.com/be/Awx">世纪春城3期4栋1008室 百度地图位置</a>
 
-世纪春城3期4栋1008室，面积97平米，南向，本栋总19楼，本房子在10楼，三房，阳台宽大前方无遮挡，视野好，赠送面积大，可参见 
 <a href="https://sz.ke.com/ershoufang/19111417610100116418.html">本房子在贝壳</a>
 
-学校： 小区自带优质普惠的“世纪春城幼儿园”  ，就在本房子楼下；
-            对口学位是小区旁边的9年一贯制的教科院附属实验学校，该学校2019年已经正式招生，2019年在民顺小学借址，2020年校舍建成；
-            同时教科院附属实验学校是龙华大学区学校，大学区内的其他学校如“深高北”、“龙华实验”、“民顺小学”、“民治中学”都可以选择。                    
-配套： 马路对面就是华润万家、左邻香颂，优城购物中心等大型商超，以及迪卡龙， 美思学谷等教育培训机构； 另外旁边有多个银行、菜市场；
-            公园有马路对面的德逸公园，以及附近的北站公园等； 
-            医院有民治大道上的深圳市第二儿童医院和新区大道上的深圳市新华医院，都是市级的三甲医院；
-交通： 多路公交车到地铁站，4号线，5号线皆可以选择，公交车5分钟到5号线民治地铁站，5分钟到4、5号线深圳北站；
-            步行18分钟到4号线的红山地铁站，20分钟到5号线的民治/深圳北 地铁站。           
-            到福田或者南山，民治大道或者梅陇路上都有多路共享巴士、E巴士直达，满足通勤；保证一人一个座位比挤地铁爽多了。          
-利好： 旁边的鸿荣源旧改项目，建有大型综合体；            
-            红山的美术馆，图书馆已经动工开建； 
-            22号地铁线，福田到东莞塘厦，参见<a href="https://mp.weixin.qq.com/s/JvmlrQ_XLubSNIfV4r2tSw">深圳22号线规划</a>；
+<a href="https://mp.weixin.qq.com/s/JvmlrQ_XLubSNIfV4r2tSw">深圳22号线规划</a>
 
-在附近设有地铁站点；
-税费： 该房子是业主名下的唯一一套住房，并且满五年，也就是“满五唯一”税费少。
-业主情况：  目前业主诚心卖房，学位使用情况是大孩子在读民顺小学4年级，两年后方能解锁；
-总结：本房子共享红山配套，离红山也就是一条马路的距离但省了几百万，性价比高！
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+    <title>百度地图API自定义地图</title>
+    <!--引用百度地图API-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=您的密匙"></script>
+  </head>
+  
+  <body>
+    <!--百度地图容器-->
+    <div style="width:700px;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+    <p style="color:red;font-weight:600">地图生成工具基于百度地图JS api v2.0版本开发，使用请申请密匙。
+      <a href="http://developer.baidu.com/map/index.php?title=jspopular/guide/introduction" style="color:#2f83c7" target="_blank">了解如何申请密匙</a>
+      <a href="http://lbsyun.baidu.com/apiconsole/key?application=key" style="color:#2f83c7" target="_blank">申请密匙</a>
+    </p>
+  </body>
+  <script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+      createMap();//创建地图
+      setMapEvent();//设置地图事件
+      addMapControl();//向地图添加控件
+      addMapOverlay();//向地图添加覆盖物
+    }
+    function createMap(){ 
+      map = new BMap.Map("map"); 
+      map.centerAndZoom(new BMap.Point(114.039928,22.632259),18);
+    }
+    function setMapEvent(){
+      map.enableScrollWheelZoom();
+      map.enableKeyboard();
+      map.enableDragging();
+      map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+      target.addEventListener("click",function(){
+        target.openInfoWindow(window);
+      });
+    }
+    function addMapOverlay(){
+      var markers = [
+        {content:"在这里",title:"我的房子",imageOffset: {width:0,height:3},position:{lat:22.632551,lng:114.039407}}
+      ];
+      for(var index = 0; index < markers.length; index++ ){
+        var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+        var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+          imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+        })});
+        var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+        var opts = {
+          width: 200,
+          title: markers[index].title,
+          enableMessage: false
+        };
+        var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+        marker.setLabel(label);
+        addClickHandler(marker,infoWindow);
+        map.addOverlay(marker);
+      };
+    }
+    //向地图添加控件
+    function addMapControl(){
+      var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+      scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+      map.addControl(scaleControl);
+      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+      map.addControl(navControl);
+      var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+      map.addControl(overviewControl);
+    }
+    var map;
+      initMap();
+  </script>
+</html>
+
+
+
+ 
