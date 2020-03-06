@@ -1,119 +1,24 @@
 
-​<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
-<meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
-<title>百度地图API自定义地图</title>
-<!--引用百度地图API-->
-<style type="text/css">
-    html,body{margin:0;padding:0;}
-    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
-    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
-</style>
-<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
-</head>
-​
-<body>
-  <!--百度地图容器-->
-  <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
-</body>
-<script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap(){
-        createMap();//创建地图
-        setMapEvent();//设置地图事件
-        addMapControl();//向地图添加控件
-        addMarker();//向地图中添加marker
-    }
-    
-    //创建地图函数：
-    function createMap(){
-        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
-        var point = new BMap.Point(114.039883,22.632951);//定义一个中心点坐标
-        map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
-        window.map = map;//将map变量存储在全局
-    }
-    
-    //地图事件设置函数：
-    function setMapEvent(){
-        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
-    }
-    
-    //地图控件添加函数：
-    function addMapControl(){
-        //向地图中添加缩放控件
-  var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-  map.addControl(ctrl_nav);
-        //向地图中添加缩略图控件
-  var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
-  map.addControl(ctrl_ove);
-        //向地图中添加比例尺控件
-  var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-  map.addControl(ctrl_sca);
-    }
-    
-    //标注点数组
-    var markerArr = [{title:"我的房子",content:"本案",point:"114.039434|22.632601",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-     ];
-    //创建marker
-    function addMarker(){
-        for(var i=0;i<markerArr.length;i++){
-            var json = markerArr[i];
-            var p0 = json.point.split("|")[0];
-            var p1 = json.point.split("|")[1];
-            var point = new BMap.Point(p0,p1);
-      var iconImg = createIcon(json.icon);
-            var marker = new BMap.Marker(point,{icon:iconImg});
-      var iw = createInfoWindow(i);
-      var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
-      marker.setLabel(label);
-            map.addOverlay(marker);
-            label.setStyle({
-                        borderColor:"#808080",
-                        color:"#333",
-                        cursor:"pointer"
-            });
-      
-      (function(){
-        var index = i;
-        var _iw = createInfoWindow(i);
-        var _marker = marker;
-        _marker.addEventListener("click",function(){
-            this.openInfoWindow(_iw);
-          });
-          _iw.addEventListener("open",function(){
-            _marker.getLabel().hide();
-          })
-          _iw.addEventListener("close",function(){
-            _marker.getLabel().show();
-          })
-        label.addEventListener("click",function(){
-            _marker.openInfoWindow(_iw);
-          })
-        if(!!json.isOpen){
-          label.hide();
-          _marker.openInfoWindow(_iw);
-        }
-      })()
-        }
-    }
-    //创建InfoWindow
-    function createInfoWindow(i){
-        var json = markerArr[i];
-        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
-        return iw;
-    }
-    //创建一个Icon
-    function createIcon(json){
-        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
-        return icon;
-    }
-    
-    initMap();//创建和初始化地图
-</script>
-</html>
+
+<a href="http://j.map.baidu.com/be/Awx">世纪春城3期4栋1008室百度地图 </a>
+
+世纪春城3期4栋1008室，面积97平米，南向，本栋总19楼，本房子在10楼，三房，阳台宽大前方无遮挡，视野好，赠送面积大，可参见 
+<a href="https://sz.ke.com/ershoufang/19111417610100116418.html">本房子在贝壳</a>
+
+学校： 小区自带优质普惠的“世纪春城幼儿园”  ，就在本房子楼下；
+            对口学位是小区旁边的9年一贯制的教科院附属实验学校，该学校2019年已经正式招生，2019年在民顺小学借址，2020年校舍建成；
+            同时教科院附属实验学校是龙华大学区学校，大学区内的其他学校如“深高北”、“龙华实验”、“民顺小学”、“民治中学”都可以选择。                    
+配套： 马路对面就是华润万家、左邻香颂，优城购物中心等大型商超，以及迪卡龙， 美思学谷等教育培训机构； 另外旁边有多个银行、菜市场；
+            公园有马路对面的德逸公园，以及附近的北站公园等； 
+            医院有民治大道上的深圳市第二儿童医院和新区大道上的深圳市新华医院，都是市级的三甲医院；
+交通： 多路公交车到地铁站，4号线，5号线皆可以选择，公交车5分钟到5号线民治地铁站，5分钟到4、5号线深圳北站；
+            步行18分钟到4号线的红山地铁站，20分钟到5号线的民治/深圳北 地铁站。           
+            到福田或者南山，民治大道或者梅陇路上都有多路共享巴士、E巴士直达，满足通勤；保证一人一个座位比挤地铁爽多了。          
+利好： 旁边的鸿荣源旧改项目，建有大型综合体；            
+            红山的美术馆，图书馆已经动工开建； 
+            22号地铁线，福田到东莞塘厦，参见<a href="https://mp.weixin.qq.com/s/JvmlrQ_XLubSNIfV4r2tSw">深圳22号线规划</a>；
+
+在附近设有地铁站点；
+税费： 该房子是业主名下的唯一一套住房，并且满五年，也就是“满五唯一”税费少。
+业主情况：  目前业主诚心卖房，学位使用情况是大孩子在读民顺小学4年级，两年后方能解锁；
+总结：本房子共享红山配套，离红山也就是一条马路的距离但省了几百万，性价比高！
